@@ -17,53 +17,76 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 SPDX-License-Identifier: MIT
 *********************************************************************************************************************/
 
-/** @file main.c
- ** @brief Código fuente principal del proyecto.
+/** @file alumno.c
+ ** @brief Implementación del módulo para manejo de datos de alumnos.
  **/
 
 /* === Headers files inclusions ==================================================================================== */
+#include <string.h>
 #include <stdio.h>
 #include "alumno.h"
 
 /* === Macros definitions ========================================================================================== */
-
-/* === Private data type declarations ============================================================================== */
+#define MAX_STRING 128
 
 /* === Private function declarations =============================================================================== */
 
-/* === Private variable definitions ================================================================================ */
+/**
+ * @brief Función interna para serializar campos de texto.
+ *
+ * Esta función formatea un par clave-valor de tipo texto y lo agrega a la cadena destino como parte del JSON.
+ *
+ * @param campo Nombre del campo (clave).
+ * @param valor Valor del campo (valor).
+ * @param destino Buffer donde se escribe el resultado.
+ * @param pos Puntero a la posición actual dentro del buffer.
+ */
+static void SerializarTexto(const char *campo, const char *valor, char *destino, size_t *pos) {
+    *pos += snprintf(destino + *pos, 100, "\"%s\":\"%s\",", campo, valor);
+}
 
-/* === Public variable definitions ================================================================================= */
-
-/* === Private function definitions ================================================================================ */
+/**
+ * @brief Función interna para serializar campos numéricos.
+ *
+ * Similar a SerializarTexto, pero para valores enteros.
+ *
+ * @param campo Nombre del campo (clave).
+ * @param valor Valor numérico a insertar.
+ * @param destino Buffer donde se escribe el resultado.
+ * @param pos Puntero a la posición actual dentro del buffer.
+ */
+static void SerializarNumero(const char *campo, int valor, char *destino, size_t *pos) {
+    *pos += snprintf(destino + *pos, 100, "\"%s\":%d,", campo, valor);
+}
 
 /* === Public function implementation ============================================================================== */
 
 /**
- * @brief Función principal del programa.
+ * @brief Serializa un alumno a formato JSON.
  *
- * Crea una estructura de tipo `alumno_t`, la serializa a formato JSON
- * y la imprime por consola.
+ * Convierte los datos contenidos en una estructura `alumno_t` a una cadena JSON válida.
  *
- * @return int Código de salida del sistema operativo.
+ * @param alumno Puntero al alumno a serializar.
+ * @param resultado Buffer donde se almacenará el JSON generado.
+ * @param espacio_disponible Espacio disponible en el buffer `resultado`.
+ * @return int Longitud de la cadena generada o -1 si no hay espacio suficiente.
  */
-int main(void) {
-    alumno_t alumno = {
-        .nombre = "Franco Gabriel",
-        .apellido = "Bayona",
-        .documento = 43566696
-    };
+int Serializar(const alumno_t *alumno, char *resultado, size_t espacio_disponible) {
+    if (espacio_disponible < 100) return -1;  // Validamos que haya suficiente espacio
 
-    char salida[256];
-    int resultado = Serializar(&alumno, salida, sizeof(salida));
+    size_t pos = 0;
 
-    if (resultado < 0) {
-        printf("Error: no hay suficiente espacio para serializar.\n");
-    } else {
-        printf("JSON generado:\n%s\n", salida);
-    }
+    // Comienza el objeto JSON
+    pos += snprintf(resultado + pos, espacio_disponible, "{");
 
-    return 0;
+    // Serializa los campos del alumno
+    SerializarTexto("nombre", alumno->nombre, resultado, &pos);
+    SerializarTexto("apellido", alumno->apellido, resultado, &pos);
+    SerializarNumero("documento", alumno->documento, resultado, &pos);
+
+    // Elimina la última coma y cierra el objeto JSON
+    resultado[pos - 1] = '}'; // Eliminar la última coma
+    resultado[pos] = '\0';    // Finalizar la cadena
+
+    return pos;
 }
-
-/* === End of documentation ======================================================================================== */
