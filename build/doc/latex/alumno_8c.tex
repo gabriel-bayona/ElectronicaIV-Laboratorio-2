@@ -1,0 +1,53 @@
+\doxysection{src/alumno.c File Reference}
+\hypertarget{alumno_8c}{}\label{alumno_8c}\index{src/alumno.c@{src/alumno.c}}
+
+
+Implementación del módulo para manejo de datos de alumnos.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}alumno.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{alumno_8c_ab5187269936538ffb8ccbbe7115ffdbc}\label{alumno_8c_ab5187269936538ffb8ccbbe7115ffdbc} 
+\#define {\bfseries MAX\+\_\+\+STRING}~128
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{alumno_8c_a3e9046b6b40b14e49faddd4b8f2b3ceb}{Serializar}} (const \mbox{\hyperlink{structalumno__t}{alumno\+\_\+t}} \texorpdfstring{$\ast$}{*}alumno, char \texorpdfstring{$\ast$}{*}resultado, size\+\_\+t espacio\+\_\+disponible)
+\begin{DoxyCompactList}\small\item\em Serializa un Alumno a formato JSON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del módulo para manejo de datos de alumnos. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{alumno_8c_a3e9046b6b40b14e49faddd4b8f2b3ceb}\index{alumno.c@{alumno.c}!Serializar@{Serializar}}
+\index{Serializar@{Serializar}!alumno.c@{alumno.c}}
+\doxysubsubsection{\texorpdfstring{Serializar()}{Serializar()}}
+{\footnotesize\ttfamily \label{alumno_8c_a3e9046b6b40b14e49faddd4b8f2b3ceb} 
+int Serializar (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structalumno__t}{alumno\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{alumno}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{resultado}{, }\item[{size\+\_\+t}]{espacio\+\_\+disponible}{}\end{DoxyParamCaption})}
+
+
+
+Serializa un Alumno a formato JSON. 
+
+Estructura que contiene los datos personales de un alumno.
+
+
+\begin{DoxyParams}{Parameters}
+{\em alumno} & Puntero al alumno a serializar \\
+\hline
+{\em resultado} & Buffer donde se almacenará el JSON \\
+\hline
+{\em espacio\+\_\+disponible} & Espacio disponible en el buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Longitud de la cadena generada o -\/1 si no hay espacio suficiente 
+\end{DoxyReturn}

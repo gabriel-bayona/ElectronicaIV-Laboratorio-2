@@ -1,0 +1,25 @@
+var NAVTREEINDEX0 =
+{
+"alumno_8c.html":[1,0,1,0],
+"alumno_8c.html#a840291bc02cba5474a4cb46a9b9566fe":[1,0,1,0,0],
+"alumno_8h.html":[1,0,0,0],
+"alumno_8h.html#a3e9046b6b40b14e49faddd4b8f2b3ceb":[1,0,0,0,1],
+"alumno_8h_source.html":[1,0,0,0],
+"annotated.html":[0,0],
+"classes.html":[0,1],
+"dir_68267d1309a1af8e8297ef4c3efbcdba.html":[1,0,1],
+"dir_bfccd401955b95cf8c75461437045ac0.html":[1,0,0],
+"files.html":[1,0],
+"functions.html":[0,2,0],
+"functions_vars.html":[0,2,1],
+"globals.html":[1,1,0],
+"globals_func.html":[1,1,1],
+"index.html":[],
+"main_8c.html":[1,0,1,1],
+"main_8c.html#a840291bc02cba5474a4cb46a9b9566fe":[1,0,1,1,0],
+"pages.html":[],
+"structalumno__t.html":[0,0,0],
+"structalumno__t.html#a5a22c5ab2efcb50945e7d41b07675be2":[0,0,0,2],
+"structalumno__t.html#aee9658b36dab8922388f2e798b323a65":[0,0,0,0],
+"structalumno__t.html#aef81eb4d16e47ccc44b41e96ab12d766":[0,0,0,1]
+};

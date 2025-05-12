@@ -17,17 +17,16 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 SPDX-License-Identifier: MIT
 *********************************************************************************************************************/
 
+/** @file alumno.h
+ ** @brief Declaraciones públicas para la gestión de datos de un alumno en formato JSON.
+ **/
+
 #ifndef ALUMNO_H_
 #define ALUMNO_H_
-
-/** @file alumno.h
- ** @brief Estructura que contiene los datos personales de un alumno
- **/
 
 /* === Headers files inclusions ==================================================================================== */
 
 /* === Header for C++ compatibility ================================================================================ */
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -36,33 +35,35 @@ extern "C" {
 
 /* === Public data type declarations =============================================================================== */
 
-typedef struct {
-    const char * nombre;     
-    const char * apellido;   
-    int documento;      
-} alumno_t;
 /**
- * @brief Estructura que contiene los datos personales de un alumno
- * 
- * @param nombre Nombre del alumno
- * @param apellido Apellido del alumno
- * @param documento Documento del alumno
+ * @struct alumno_t
+ * @brief Estructura que contiene los datos personales de un alumno.
+ *
+ * Representa los datos básicos de identificación de un alumno, incluyendo nombre, apellido y número de documento.
  */
+typedef struct {
+    const char * nombre;     /**< Nombre del alumno */
+    const char * apellido;   /**< Apellido del alumno */
+    int documento;           /**< Documento del alumno */
+} alumno_t;
+
 /* === Public variable declarations ================================================================================ */
 
 /* === Public function declarations ================================================================================ */
+
 /**
- * @brief Serializa los datos de un alumno a formato JSON.
+ * @brief Serializa los datos de un alumno al formato JSON.
  * 
- * @param alumno Puntero a la estructura con los datos del alumno
- * @param cadena Buffer donde se almacenará el JSON resultante
- * @param espacio Cantidad de bytes disponibles en el buffer
- * @return int Longitud de la cadena generada o -1 si no hay espacio suficiente
+ * Esta función convierte los datos de la estructura `alumno_t` a una cadena JSON válida.
+ *
+ * @param alumno Puntero a la estructura con los datos del alumno.
+ * @param resultado Buffer donde se almacenará la cadena JSON resultante.
+ * @param espacio_disponible Tamaño del buffer disponible en bytes.
+ * @return int Longitud de la cadena generada, o -1 si no hay espacio suficiente.
  */
 int Serializar(const alumno_t *alumno, char *resultado, size_t espacio_disponible);
- 
-/* === End of conditional blocks =================================================================================== */
 
+/* === End of conditional blocks =================================================================================== */
 #ifdef __cplusplus
 }
 #endif

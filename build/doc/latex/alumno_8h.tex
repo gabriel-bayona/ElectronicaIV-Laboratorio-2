@@ -1,0 +1,72 @@
+\doxysection{inc/alumno.h File Reference}
+\hypertarget{alumno_8h}{}\label{alumno_8h}\index{inc/alumno.h@{inc/alumno.h}}
+
+
+Estructura que contiene los datos personales de un alumno.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structalumno__t}{alumno\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{alumno_8h_a3e9046b6b40b14e49faddd4b8f2b3ceb}{Serializar}} (const \mbox{\hyperlink{structalumno__t}{alumno\+\_\+t}} \texorpdfstring{$\ast$}{*}alumno, char \texorpdfstring{$\ast$}{*}resultado, size\+\_\+t espacio\+\_\+disponible)
+\begin{DoxyCompactList}\small\item\em Estructura que contiene los datos personales de un alumno. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estructura que contiene los datos personales de un alumno. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{alumno_8h_a3e9046b6b40b14e49faddd4b8f2b3ceb}\index{alumno.h@{alumno.h}!Serializar@{Serializar}}
+\index{Serializar@{Serializar}!alumno.h@{alumno.h}}
+\doxysubsubsection{\texorpdfstring{Serializar()}{Serializar()}}
+{\footnotesize\ttfamily \label{alumno_8h_a3e9046b6b40b14e49faddd4b8f2b3ceb} 
+int Serializar (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structalumno__t}{alumno\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{alumno}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{resultado}{, }\item[{size\+\_\+t}]{espacio\+\_\+disponible}{}\end{DoxyParamCaption})}
+
+
+
+Estructura que contiene los datos personales de un alumno. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & Nombre del alumno \\
+\hline
+{\em apellido} & Apellido del alumno \\
+\hline
+{\em documento} & Documento del alumno\\
+\hline
+\end{DoxyParams}
+Serializa los datos de un alumno a formato JSON.
+
+
+\begin{DoxyParams}{Parameters}
+{\em alumno} & Puntero a la estructura con los datos del alumno \\
+\hline
+{\em cadena} & Buffer donde se almacenará el JSON resultante \\
+\hline
+{\em espacio} & Cantidad de bytes disponibles en el buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Longitud de la cadena generada o -\/1 si no hay espacio suficiente
+\end{DoxyReturn}
+Estructura que contiene los datos personales de un alumno.
+
+
+\begin{DoxyParams}{Parameters}
+{\em alumno} & Puntero al alumno a serializar \\
+\hline
+{\em resultado} & Buffer donde se almacenará el JSON \\
+\hline
+{\em espacio\+\_\+disponible} & Espacio disponible en el buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Longitud de la cadena generada o -\/1 si no hay espacio suficiente 
+\end{DoxyReturn}

@@ -17,71 +17,53 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 SPDX-License-Identifier: MIT
 *********************************************************************************************************************/
 
-/** @file alumno.c
- ** @brief Implementación del módulo para manejo de datos de alumnos
+/** @file main.c
+ ** @brief Código fuente principal del proyecto.
  **/
 
 /* === Headers files inclusions ==================================================================================== */
-#include <string.h>
 #include <stdio.h>
 #include "alumno.h"
 
 /* === Macros definitions ========================================================================================== */
-#define MAX_STRING 128
+
+/* === Private data type declarations ============================================================================== */
 
 /* === Private function declarations =============================================================================== */
-/**
- * @brief Función interna para serializar los campos de texto.
- * 
- * @param campo Nombre del campo
- * @param valor Valor del campo
- * @param destino Buffer donde se almacenará el resultado
- * @param pos Puntero a la posición actual en el buffer
- */
-static void SerializarTexto(const char *campo, const char *valor, char *destino, size_t *pos) {
-    *pos += snprintf(destino + *pos, 100, "\"%s\":\"%s\",", campo, valor);
-}
- 
 
-/**
- * @brief Función interna para serializar los campos numéricos.
- * 
- * @param campo Nombre del campo
- * @param valor Valor numérico del campo
- * @param destino Buffer donde se almacenará el resultado
- * @param pos Puntero a la posición actual en el buffer
- */
-static void SerializarNumero(const char *campo, int valor, char *destino, size_t *pos) {
-    *pos += snprintf(destino + *pos, 100, "\"%s\":%d,", campo, valor);
-}
+/* === Private variable definitions ================================================================================ */
 
+/* === Public variable definitions ================================================================================= */
 
+/* === Private function definitions ================================================================================ */
 
 /* === Public function implementation ============================================================================== */
+
 /**
- * @brief Serializa un Alumno a formato JSON.
- * 
- * @param alumno Puntero al alumno a serializar
- * @param resultado Buffer donde se almacenará el JSON
- * @param espacio_disponible Espacio disponible en el buffer
- * @return int Longitud de la cadena generada o -1 si no hay espacio suficiente
+ * @brief Función principal del programa.
+ *
+ * Crea una estructura de tipo `alumno_t`, la serializa a formato JSON
+ * y la imprime por consola.
+ *
+ * @return int Código de salida del sistema operativo.
  */
-int Serializar(const alumno_t *alumno, char *resultado, size_t espacio_disponible) {
-    if (espacio_disponible < 100) return -1;  // Validamos que haya suficiente espacio
+int main(void) {
+    alumno_t alumno = {
+        .nombre = "Franco Gabriel",
+        .apellido = "Bayona",
+        .documento = 43566696
+    };
 
-    size_t pos = 0;
+    char salida[256];
+    int resultado = Serializar(&alumno, salida, sizeof(salida));
 
-    // Comienza el objeto JSON
-    pos += snprintf(resultado + pos, espacio_disponible, "{");
+    if (resultado < 0) {
+        printf("Error: no hay suficiente espacio para serializar.\n");
+    } else {
+        printf("JSON generado:\n%s\n", salida);
+    }
 
-    // Serializa los campos del alumno
-    SerializarTexto("nombre", alumno->nombre, resultado, &pos);
-    SerializarTexto("apellido", alumno->apellido, resultado, &pos);
-    SerializarNumero("documento", alumno->documento, resultado, &pos);
-
-    // Elimina la última coma y cierra el objeto JSON
-    resultado[pos - 1] = '}'; // Eliminar la última coma
-    resultado[pos] = '\0';    // Finalizar la cadena
-
-    return pos;
+    return 0;
 }
+
+/* === End of documentation ======================================================================================== */
