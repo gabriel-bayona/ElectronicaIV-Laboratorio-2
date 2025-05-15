@@ -17,59 +17,44 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 SPDX-License-Identifier: MIT
 *********************************************************************************************************************/
 
-/** @file alumno.h
- ** @brief Declaraciones públicas para la gestión de datos de un alumno en formato JSON.
- **/
+#ifndef CONFIG_H_
+#define CONFIG_H_
 
-#ifndef ALUMNO_H_
-#define ALUMNO_H_
+/** @file config.h
+ ** @brief Configuracion con las definiciones macros
+ **/
 
 /* === Headers files inclusions ==================================================================================== */
 
 /* === Header for C++ compatibility ================================================================================ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /* === Public macros definitions =================================================================================== */
 
-/* === Public data type declarations =============================================================================== */
+#define TIPO_DE_MEMORIA 1
 
-/**
- * @struct alumno_t
- * @brief Estructura que representa los datos personales de un alumno.
- */
-typedef struct alumno_s * alumno_t;
+#if TIPO_DE_MEMORIA == 0
+#define USAR_MEMORIA_DINAMICA
+#else
+#define USAR_MEMORIA_ESTATICA
+#endif
+
+#ifdef USAR_MEMORIA_ESTATICA
+        #define ALUMNOS_MAX_INSTANCIAS 2 //!<Cantidad maxima de alumnos
+#endif
+/* === Public data type declarations =============================================================================== */
 
 /* === Public variable declarations ================================================================================ */
 
 /* === Public function declarations ================================================================================ */
 
-/**
- * @brief Funcion para crear un nuevo alumno
- * 
- * @param nombre Nombre del alumno
- * @param apellido Apellido del alumno
- * @param dni Documento del alumno
- * @return alumno_t Referencia al  nuevo alumno creado
- */
-alumno_t CrearAlumno(char * nombre, char * apellido, int dni);
-
-/**
- * @brief Funcion para serializar los datos de un alumno
- *
- * @param alumno Referencia al alumno a serializar
- * @param buffer cadena de caracteres donde se almacenaran los datos serializados
- * @param size Espacio disponible en la cadena de caracteres
- * @return int Cantidad de caracteres escritos en la cadena de resultado o -1 si hubo error
- */
-int SerializarAlumno(alumno_t self, char *buffer, int size);
-
-
-
 /* === End of conditional blocks =================================================================================== */
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* ALUMNO_H_ */
+#endif /* CONFIG_H*/

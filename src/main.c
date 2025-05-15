@@ -46,22 +46,39 @@ SPDX-License-Identifier: MIT
  * @return int Código de salida del sistema operativo
  */
 int main(void) {
-    alumno_t alumno = {
-        .nombre = "Franco Gabriel",
-        .apellido = "Bayona",
-        .documento = 43566696
-    };
+    // Crear un alumno y serializarlo a JSON
+    // Se utiliza un buffer de tamaño fijo para almacenar el JSON generado
+    char buffer[100];
+    int resultado;
 
-    char salida[256];
-    int resultado = Serializar(&alumno, salida, sizeof(salida));
+    alumno_t gabrielB = CrearAlumno("Gabriel","Bayona",43770990);
+    if (gabrielB == NULL) {
+        printf("Error al crear el alumno\n");
+        return -1;
+    }
+    // Crear otro alumno
+    alumno_t magnusC = CrearAlumno("Magnus","Carlsen",42456945);
+    if (magnusC == NULL) {
+        printf("Error al crear el alumno\n");
+        return -1;
+    }
 
-    if (resultado < 0) {
-        printf("Error: no hay suficiente espacio para serializar.\n");
+    resultado = SerializarAlumno(gabrielB,buffer, sizeof(buffer));
+    if (resultado >= 0) {
+        printf("JSON generado:\n%s\n", buffer);
     } else {
-        printf("JSON generado:\n%s\n", salida);
+        printf("Error: no hay suficiente espacio para serializar.\n");
+    }
+
+    resultado = SerializarAlumno(magnusC,buffer, sizeof(buffer));
+    if (resultado >= 0) {
+        printf("JSON generado:\n%s\n", buffer);
+    } else {
+        printf("Error: no hay suficiente espacio para serializar.\n");
     }
 
     return 0;
+
 }
 
 

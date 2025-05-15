@@ -44,3 +44,6 @@ distclean: clean
 	@rm -rf $(DOC_DIR)
 
 -include $(DEPS)
+
+exe: all
+	@$(TARGET)
